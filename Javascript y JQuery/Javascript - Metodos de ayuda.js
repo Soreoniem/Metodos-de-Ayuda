@@ -1,5 +1,4 @@
 ﻿/**
-	Metodos de ayuda versión: 3
 	© Copyright 2058, JuanLu Corp.
 	
 	• error()		necesita mínimo versión 3 (cambio parametros)
@@ -64,17 +63,20 @@ $(document).ready(function(){
 // ╔═══♦ Metodos ♦═══╗
 
 
-/* ✪ remCookie( "variable" )
-		► "variable"	▬ (String)	Nombre de la variable cookie a eliminar.
-	
-	INFO: Elimina una variable cookie del navegador;
+/* ✪ remCookie( variable )
+	INFO:
+		• Permite eliminar una cookie del navegador web;
+		
+		► (variable):	(String)	Nombre de la variable cookie a eliminar.
+		
+		📖 Ejemplo 1:	remCookie( "variable" );
 */
 remCookie = function( variable ){
 	// Comprueba: variable
-	if( this.comprobarVariable(variable, "string") == false ){
-		this.error("remCookie(<u>variable</u>)",
-			"variable", variable,
-			"El parametro debe ser de tipo string (texto)");}
+	if( this.comprobarVariable(variable) != "string" ){
+		this.error("El parametro debe ser de tipo string (texto)",
+		"remCookie(<u>variable</u>)",
+			"variable", variable, );}
 	
 	// Se actualizará la cookie con una fecha caducada para eliminarla.
 	else {
@@ -82,41 +84,42 @@ remCookie = function( variable ){
 	}
 }
 
-/* ✪ setCookie( "variable", texto )
-		► "variable"	▬ (String)			Nombre de la variable.
-		► texto			▬ (texto a String)	Valor de la variable.
+/* ✪ setCookie( variable, valor )
+	INFO:
+		• Permite añadir una variable cookie al navegador.
+		
+		► (variable):	(String)	Nombre de la variable cookie.
+		► (valor):					Valor de la variable.
 
 		📖 Ejemplo:	setCookie( "usuario", "Juan Luis" );
-	
-	INFO: Añade una nueva cookie al navegador;
 */
-setCookie = function( variable, texto ){
-	// Comprueba: variable
-	if( this.comprobarVariable(variable, "string") == false ){
-		this.error("setCookie(<u>variable</u>, texto)",
-			"variable", variable,
-			"El parametro debe ser de tipo string (texto)");}
+setCookie = function( variable, valor ){
+	 // Se almacenará la nueva cookie
+	if( this.comprobarVariable(variable, "string") ){
+		document.cookie = variable +"="+ valor;
 	
-	// Se almacenará la nueva cookie
 	else {
-		document.cookie = variable +"="+ texto;
+		this.error("El 1r parametro debe ser de tipo string",
+		"setCookie(<u>variable</u>, valor)",
+			"variable", variable); }
 	}
 }
 
-/* ✪ getCookie( "variable" )
-		► "variable"	▬ (String)	nombre de la variable almacenada.
-		◄ return		▬ (String)	Devuelve el valor de la variable.
+/* ✪ getCookie( variable )
+	INFO:
+		• Obtiene una variable cookie del navegador.
+		
+		► (variable):	(String)	Nombre de la variable cookie.
+		◄ Return:		(String)	Valor de la variable.
 
 		📖 Ejemplo:	getCookie( "usuario" )
-	
-	INFO: Obtiene una cookie del navegador que esté creada;
 */
 getCookie = function( variable ){
 	// Comprueba: variable
-	if( this.comprobarVariable(variable, "string") == false ){
-		this.error("getCookie(<u>variable</u>)",
-			"variable", variable,
-			"El parametro debe ser de tipo string (texto)");}
+	if( this.comprobarVariable(variable) != "string" ){
+		this.error("El parametro debe ser de tipo string",
+			"getCookie(<u>variable</u>)",
+			"variable", variable); }
 	
 	// Se procederá a encontrar la cookie
 	else {
@@ -133,24 +136,25 @@ getCookie = function( variable ){
 			}
 		}
 		// Si no se encuentra la cookie lanzará un error
-		this.error("getCookie", "", variable, "La cookie no existe.");
+		this.error("La cookie \""+ variable +"\" no existe.");
 	}
 }
 
-/* ✪ comprobarVariable( variable, "tipoVariable" )
-		► variable			▬ (Variable)	Valor de la variable
-		► "tipoVariable"	▬ (String)		"boolean", "number", "string", "Array", "null" o "undefined"
-		◄ return			▬ true / false
-
-		📖 Ejemplo:	comprobarVariable( miVariable, "string" )
-	
-	INFO: Comprobará si la variable coincide con el "tipoVariable"
-	
-	✪ Sobrecarga: comprobarVariable( variable )
-		► variable			▬ (variable)	Valor de la variable.
-		◄ return			▬ (String)		"boolean", "number", "string", "Array", "null" o "undefined"
+/* ✪ comprobarVariable( variable, tipoVariable )
+	INFO:
+		• Comprueba de que tipo es la variable.
+		• Puede comparar la variable con un tipo específico.
 		
-		📖 Ejemplo:	comprobarVariable( miVariable )
+		► (variable):		Valor de la variable.
+		► (tipoVariable):	(opcional) (String)	"boolean", "number", "string", "Array", "null" o "undefined"
+		◄ Return:			true, false o texto.
+
+		📖 Ejemplo 1:	comprobarVariable( miVariable )
+		📖 Ejemplo 2:	comprobarVariable( miVariable, "number" )
+	
+	NOTA:
+		El primer parametro devolverá de que tipo es ("boolean", "number", etc.)
+		Si le pasas 2 parametros comparará el 1r parámetro con el segundo devolviendo true o false.
 */
 comprobarVariable = function(variable, tipoVariable){
 	
@@ -171,9 +175,9 @@ comprobarVariable = function(variable, tipoVariable){
 	
 	// Comprueba: "tipoVariable"
 	if( typeof tipoVariable != "string" ){
-		this.error("comprobarVariable(variable, <u>tipoVariable</u>)",
-			"tipoVariable", tipoVariable,
-			"Necesita ser de tipo texto: \"boolean\", \"number\", \"string\", \"Array\", \"null\" o \"undefined\".");}
+		this.error("Necesita ser de tipo texto: \"boolean\", \"number\", \"string\", \"Array\", \"null\" o \"undefined\".",
+		"comprobarVariable(variable, <u>ti</u>p<u>oVariable</u>)",
+			"tipoVariable", tipoVariable); }
 	
 	// Parametros correctos
 	else {
@@ -188,9 +192,9 @@ comprobarVariable = function(variable, tipoVariable){
 			if(tipoVariable != "boolean" && tipoVariable != "number"
 				&& tipoVariable != "string" && tipoVariable != "Array"
 				&& tipoVariable != "null" && tipoVariable != "undefined"){
-				this.error("comprobarVariable(variable, <u>tipoVariable</u>)",
-					"tipoVariable", tipoVariable,
-					"Necesita ser de tipo texto: \"boolean\", \"number\", \"string\", \"Array\", \"null\" o \"undefined\".");
+				this.error("Necesita ser de tipo texto: \"boolean\", \"number\", \"string\", \"Array\", \"null\" o \"undefined\".",
+				"comprobarVariable(variable, <u>ti</u>p<u>oVariable</u>)",
+					"tipoVariable", tipoVariable,);
 			}
 			return false;
 		} else {
@@ -200,23 +204,27 @@ comprobarVariable = function(variable, tipoVariable){
 };
 
 /* ✪ error( mensaje, cabecera, nombreVariable, valorVariable )
-		► mensaje			▬ 			Mensaje para el error.
-		► cabecera			▬ 			Cabecera del error.
-		► nombreVariable	▬ 			Nombre de la variable que da error.
-		► valorVariable		▬ 			Mostrará el dato que ha creado el error.
-		return				▬ (html)	Muestra una caja con el error.
-
-		📖 Ejemplo 1 parametro:	error("Conexión fallida a base de datos");
-		📖 Ejemplo 2 parametro:	error("Conexión fallida a base de datos", "Conexión fallida");
-		📖 Ejemplo 4 parametro:	error("Conexión fallida a base de datos", "Conexión fallida", "puerto", puerto);
-	
 	INFO:
-		• Mostrará al inicio del contenido una caja html con el error personalizado.
-		• Solo se admiten 1, 2 o 4 parametros
-			· 0 y 3 parametros dan error y 5 o más se ommiten.
+		• Muestra un mensaje al inicio del body.
+		• Puede mostrar solo un mensaje.
+		• Puede mostrar un mensaje con cabecera.
+		• Puede mostrar un mensaje con cabecera y mostrar la variable que ha dado error.
+		
+		► (mensaje):		(String)	Mensaje de error.
+		► (cabecera):		(opcional)	Cabecera del error.
+		► (nombreVariable):	(opcional)	nombre de la variable.
+		► (valorVariable):	(opcional)	valor de la variable.
+		Return:				(html)		Muestra el error.
+
+		📖 Ejemplo 1:	error("Mensaje de error");
+		📖 Ejemplo 2:	error("Mensaje de error", "Cabecera");
+						error("Mensaje de error", 503);
+		📖 Ejemplo 4:	error("Mensaje de error", "Cabecera", "miVariable", miVariable);
+	
+	NOTA:
+		• Solo se permite usar 1, 2 o 4 parametros 5 o más se ommite.
 */
 error = function(mensaje, cabecera, nombreVariable, valorVariable){
-	
 	 // 0 Parametros
 	if( comprobarVariable(mensaje, "undefined") ){
 		this.error("Debes pasar como mínimo un mensaje. Parametros necesarios: 1, 2 o 4",
@@ -244,12 +252,12 @@ error = function(mensaje, cabecera, nombreVariable, valorVariable){
 	} else if( comprobarVariable(valorVariable, "undefined") ){
 		this.error("Has pasado 3 parametros. Parametros necesarios: 1, 2 o 4",
 			"error(mensaje, cabecera, <u>nombreVariable</u>, valorVariable)",
-			"3r parametro", nombreVariable);
+			"nombreVariable", nombreVariable);
 	} else {
 		$("body").prepend(
 			"<p style=\"border: dashed 2px red; background-color: whitesmoke;\">"
 			+"<b>• Error:</b> "+ cabecera + this.ENTER
-				+ this.TAB +"Variable: "+ nombreVariable +" = '"+ valorVariable +"' ("+ this.comprobarVariable(valorVariable) +")"+ this.ENTER
+				+ this.TAB + nombreVariable +" = '"+ valorVariable +"' ("+ this.comprobarVariable(valorVariable) +")"+ this.ENTER
 				+ this.TAB + "<i>"+ mensaje +"</i>"
 			+"</p>"
 		);
@@ -257,20 +265,41 @@ error = function(mensaje, cabecera, nombreVariable, valorVariable){
 };
 
 /* ✪ aleatorio( ale1, ale2 )
-		► ale1		▬ Admite cualquier dato.
-		► ale2		▬ Admite cualquier dato y es opcional (+info en ejemplos).
-		◄ return	▬ Devuelve el aleatorio (boolean, number, string).
-
-		📖 Ejemplo boleano:	aleatorio(true)					(true / false);
-		📖 Ejemplo numerico:	aleatorio(8);						(0 → 8)
-				  numerico:	aleatorio(8, -3);					(8 → -3)
-		📖 Ejemplo string:	aleatorio("esta es mi frase")		(palabra aleatoria);
-		          string:	aleatorio("esta es mi frase", 5)	(5 caracteres consecutivos. 1r caracter aleatorio);
-		📖 Ejemplo Array:	aleatorio([1, true, undefined, "hola", 8, Math.PI]) (1 valor aleatorio);
-		📖 Ejemplo null:		aleatorio(null)					(1 → 50);
-		📖 Ejemplo undefined: aleatorio(null)					(1 → 100);
+	INFO:
+		• Devuelve un aleatorio de lo que le pasen por parametro.
+		• Puede un aleatorio de: boleano, numero, palabra, caracteres, grupo de caracteres y Array
+		
+		► (ale1):	(opcional)	Admite cualquier dato.
+		► (ale2):	(opcional)	Admite cualquie dato.
+		◄ Return:	Devuelve el dato aleatorio pedido.
+		
+		📖 Ejemplo 0:	aleatorio()
+		📖 Ejemplo 1:	aleatorio(true)
+						aleatorio("mi frase")
+						aleatorio(-16)
+						aleatorio(["mi", 8, "array", Math.PI])
+						aleatorio(null)
+						aleatorio(undefined)
+		📖 Ejemplo 2:	aleatorio(-16, 17)
+		📖 Ejemplo 2:	aleatorio("mi frase", 3)
 	
-	INFO: Boleano: devolverá true o false;
+	NOTA:
+		Null:
+			• Sin parametros devolverá un número del 1 al 100.
+		Undefined:
+			• Si es null devolverá un número deñ 1 al 50.
+		Boolean:
+			• Si es true devolverá un aleatorio con true o false.
+		String:
+			• Si es una frase devolverá una palabra.
+			• Si es una frase y tiene un 2º parámetro:
+				• Obtiene carácteres y el segundo parámetro es la cantidad consecutiva.
+				• El primer carácter es el aleatorio.
+		Number:
+			• Con 1 parámetro sevolverá de 0 al número especificado.
+			• Con 2 parámetros devolverá del 1r al 2º parametro independientemente del orden de los parámetros.
+		Array:
+			• Devuelve un aleatorio del contenido del array.
 */
 aleatorio = function(ale1, ale2){
 	var tipoAle1	= this.comprobarVariable(ale1);
@@ -359,13 +388,16 @@ aleatorio = function(ale1, ale2){
 	}
 };
 
-/* Este metodo debe activarse arriba en Ejecutar JQuery
-	Inicializa el gif de carga para poder usarse.
-	• Usa el método imagenCarga(); para mostrar u ocultar el gif.
+/* Este metodo se debe activar arriba en Ejecutar JQuery
+	INFO:
+		• Permite usar un gif de cargando.
+		• Luego se puede usar el método imagenCarga() para activar y desactivar el gif
+		• Este gif se mostrará en el centro de la página sin estorbar al código.
 	
 	Requisitos:
 		• Carpeta Imgs al lado del html.
 		• cargando.gif dentro de la carpeta Imgs
+		• activar cada vez que la pagina inicie (iniciar con JQuery).
 */
 iniciarConfiguraciónGIFCarga = function(){
 // HTML
@@ -374,7 +406,7 @@ iniciarConfiguraciónGIFCarga = function(){
 			"<div id=\"imagenCarga\">"
 			+"<img src=\"./Imgs/cargando.gif\"/>"
 			+"</div>"
-		)
+	)
 
 		// Añade su código CSS
 		// Aquí se cambia el CSS del gif de carga
@@ -414,9 +446,13 @@ iniciarConfiguraciónGIFCarga = function(){
 };
 
 /* ✪ imagenCarga()
-		►◄ Sin parametros de entrada o salida
+	INFO:
+		• Activa / DesActiva el gif de cargando cada vez que se le llama.
+		• Cada vez que se llama al metodo cambia el estado del gif.
+		
+		►◄ Sin parametros de entrada o salida: Solo muestra u oculta el gif.
 
-		📖 Ejemplo:	imagenCarga();
+		📖 Ejemplo 0:	imagenCarga();
 		
 		Requisitos:
 			• Es necesario activar antes la función iniciarConfiguraciónGIFCarga()
@@ -424,8 +460,6 @@ iniciarConfiguraciónGIFCarga = function(){
 
 		NOTA:
 			1. (1 vez) Requiere ejecutar antes la función iniciarConfiguraciónGIFCarga().
-	
-	INFO: Usa esta función para Activar o DesActivar la imagen gif de carga.
 */
 imagenCarga = function(){
 	// Obtención de datos
@@ -435,7 +469,8 @@ imagenCarga = function(){
 
 	// Comprobar: Si se ha iniciado antes iniciarConfiguraciónGIFCarga()
 	if( estado != true && estado != false){
-		this.error("imagenCarga()", "", "", "Se requiere iniciar antes el método <u> iniciarConfi</u>g<u>uraciónGIFCar</u>g<u>a() </u>");}
+		this.error("Se requiere iniciar antes el método <u> iniciarConfi</u>g<u>uraciónGIFCar</u>g<u>a() </u>",
+			"imagenCarga()");}
 
 	else {
 		// Desactivar cargando
@@ -465,60 +500,109 @@ imagenCarga = function(){
 	}
 };
 
-/* ✪ alertArray( [arrayDatos], titulo )
-		► [arrayDatos]	▬ (Array)	Array de los datos (no es una matriz).
-		return			▬ (Alert)	Devuelve el Array en un alert().
-
-		📖 Ejemplo:	imagenCarga( [0, "valor2", true, -2.3] );
-	
-	INFO: Muestra en un alert() la información que contiene la array.
-	
-	✪ Sobrecarga: alertArray( [arrayDatos], titulo )
-		► [arrayDatos]	▬ (Array)	Array de los datos (no es una matriz).
-		► titulo		▬ (String)	Título para el array.
-		return			▬ (Alert)	Devuelve el Array en un alert().
+/* ✪ imprimirArray( arrayDatos, modo|titulo, titulo )
+	INFO:
+		• Permite imprimir un array.
+		• Puede imprimir el array por alert(), console.log(), o por html.
+		• Se le puede poner un título cuando se imprime.
 		
-		📖 Ejemplo:	imagenCarga( [0, "valor2", true, -2.3], "miTitulo" );
+		► (arrayDatos):	Array.
+		► (modo):		(opcional) "alert", "console", "html".
+		► (titulo):		(opcional) Título.
+		Return:	Imprime el array por: alert, console.log o html (alert por defecto)
 		
+		📖 Ejemplo 1:	imprimirArray( miArray );
+		📖 Ejemplo 2:	imprimirArray( miArray, "console" );
+						imprimirArray( miArray, "mi título" );
+		📖 Ejemplo 3:	imprimirArray( miArray, "html", "mi Título" );
+	
+	NOTA:
+		El 2º parámetro se usa para el modo o el título.
+		Si añades un modo puedes añadir tu título en el 3r parámetro.
 */
-alertArray	= function( arrayDatos, titulo ){
+imprimirArray	= function( arrayDatos, modo, titulo ){
+	var saltoLinea	= "\n"
 	
-	// Sobrecarga function(arrayDatos)
-	if( comprobarVariable(titulo, "undefined") ){
+	if( modo == "html" ){
+		saltoLinea	= "<br/>";
+	}
+	 // Error: necesario Array
+	if( comprobarVariable(arrayDatos) != "Array" ){
+		console.log("Error: no array");
+		this.error("El primer parametro debe ser de tipo Array",
+			"imprimirArray(<u>arra</u>y<u>Datos</u>)",
+			"arrayDatos", arrayDatos)
+		;
+	}
+	
+	 // 1 parametro (solo array)
+	if( comprobarVariable(titulo, "undefined")
+	&& comprobarVariable(modo, "undefined") ){
+		console.log("1 parametro");
 		titulo		= "";
+		modo		= "alert";
+	
+	 // 2 parametros (array y título)
+	} else if( comprobarVariable(titulo, "undefined") ){
+		console.log("2 parametros");
+		 // 2 parametros (array y título)
+		 // palabras reservadas: alert, console y html (formas de imprimir)
+		if( modo == "alert"
+		 || modo == "console"
+		 || modo == "html" ){
+			titulo	= "";
+		
+		// 2 parametros (array y modo)
+		}
 	}
 	
 	// Comprobar: arrayDatos
-	if( comprobarVariable(arrayDatos, "Array") == false ){
-		this.error("alertArray(titulo, <u>arrayDatos</u>)",
-			"arrayDatos", arrayDatos,
-			"La variable no es un Array.");}
-	
-	// Parametros correctos
-	else {
+	if( comprobarVariable(arrayDatos, "Array") ){
+		
 		// titulo
-		var imprimir = titulo + "\n┌";
+		var imprimir = titulo + saltoLinea +"┌";
 		
 		// línea 1
 		for( var x=1 ; x<titulo.length ; x++ ){
 			imprimir = imprimir + "─";
 		}
-		
+		// Espacios a la izquierda de los números
+		// este es un caracter y no un espacio (Caracter Ascii 255)
+		var espacio = " ";
 		// array
 		if( arrayDatos.length>0 ){
 			for( var x=0 ; x<arrayDatos.length ; x++ ){
-				imprimir = imprimir +"\n│ "+ x +" [►"+ arrayDatos[x] +"◄]";
+				imprimir	= imprimir + saltoLinea +"│ ";
+				
+				for( var y=0 ; y<(((arrayDatos.length -1) +"").length - (x +"").length)  ; y++ ){
+					imprimir	= imprimir + espacio;
+				}
+				
+				imprimir = imprimir + x +" [►"+ arrayDatos[x] +"◄]";
 			}
 		}
 		
 		// línea 2
-		imprimir = imprimir +"\n└";
+		imprimir = imprimir + saltoLinea +"└";
 		for( var x=1 ; x<titulo.length ; x++ ){
 			imprimir = imprimir + "─";
 		}
 		
 		// alert final
-		alert(imprimir);
+		if( modo == "alert" ){
+			alert(imprimir)
+		} else if( modo == "console" ) {
+			console.log(imprimir);
+		} else if( modo == "html" ) {
+			$("body").append(
+				"<div class=\"imprimirArray\" style=\"text-align: left;\">"
+					+ imprimir
+				+"</div>"
+			);
+			
+		} else {
+			alert(imprimir);
+		}
 	}
 };
 
@@ -624,6 +708,19 @@ alinearImagen_Vertical = function(tagImagen){
 };
 
 /** Datos de Versiones
+
+	• Metodos actualizados:
+		· alertArray → renombrado a imprimirArray();
+	
+	• Metodos creados:
+		· imprimirArray
+			Ahora es capáz de:
+				imprimir array.
+				indicar como imprimir (alert, console.log o html).
+				añadir un título.
+	
+	+ correcciones menores.
+	Mejora de la comprensión de los metodos (mejor explicación y uso)
 
 ►	Versión: 3
 	• Metodos actualizados:
