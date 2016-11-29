@@ -537,13 +537,11 @@ imprimirArray	= function( arrayDatos, modo, titulo ){
 	 // 1 parametro (solo array)
 	if( comprobarVariable(titulo, "undefined")
 	&& comprobarVariable(modo, "undefined") ){
-		console.log("1 parametro");
 		titulo		= "";
 		modo		= "alert";
 	
 	 // 2 parametros (array y título)
 	} else if( comprobarVariable(titulo, "undefined") ){
-		console.log("2 parametros");
 		 // 2 parametros (array y título)
 		 // palabras reservadas: alert, console y html (formas de imprimir)
 		if( modo == "alert"
@@ -552,6 +550,8 @@ imprimirArray	= function( arrayDatos, modo, titulo ){
 			titulo	= "";
 		
 		// 2 parametros (array y modo)
+		} else {
+			titulo	= modo;
 		}
 	}
 	
