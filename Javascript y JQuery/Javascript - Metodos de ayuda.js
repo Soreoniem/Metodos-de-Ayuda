@@ -1,4 +1,5 @@
 ﻿/**
+	Metodos de ayuda versión: 3.1
 	© Copyright 2058, JuanLu Corp.
 	
 	• error()		necesita mínimo versión 3 (cambio parametros)
@@ -76,7 +77,7 @@ remCookie = function( variable ){
 	if( this.comprobarVariable(variable) != "string" ){
 		this.error("El parametro debe ser de tipo string (texto)",
 		"remCookie(<u>variable</u>)",
-			"variable", variable, );}
+			"variable", variable );}
 	
 	// Se actualizará la cookie con una fecha caducada para eliminarla.
 	else {
@@ -96,13 +97,12 @@ remCookie = function( variable ){
 setCookie = function( variable, valor ){
 	 // Se almacenará la nueva cookie
 	if( this.comprobarVariable(variable, "string") ){
-		document.cookie = variable +"="+ valor;
+		document.cookie = variable +"="+ valor; }
 	
 	else {
 		this.error("El 1r parametro debe ser de tipo string",
 		"setCookie(<u>variable</u>, valor)",
 			"variable", variable); }
-	}
 }
 
 /* ✪ getCookie( variable )
@@ -194,12 +194,11 @@ comprobarVariable = function(variable, tipoVariable){
 				&& tipoVariable != "null" && tipoVariable != "undefined"){
 				this.error("Necesita ser de tipo texto: \"boolean\", \"number\", \"string\", \"Array\", \"null\" o \"undefined\".",
 				"comprobarVariable(variable, <u>ti</u>p<u>oVariable</u>)",
-					"tipoVariable", tipoVariable,);
-			}
-			return false;
-		} else {
-			return true;
-		}
+					"tipoVariable", tipoVariable); }
+			
+			return false; }
+		
+		else { return true; }
 	}
 };
 
@@ -709,6 +708,7 @@ alinearImagen_Vertical = function(tagImagen){
 
 /** Datos de Versiones
 
+►	Versión: 3.1
 	• Metodos actualizados:
 		· alertArray → renombrado a imprimirArray();
 	
