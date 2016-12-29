@@ -319,14 +319,18 @@ aleatorio = function(ale1, ale2){
 		ale1	= palabras.join(" ");
 	}
 	
+	// Si me pasan un booleano como 2º parametro el aleatrio máximo es 2
 	if( tipoAle2 == "boolean" ){ ale2	= 2; }
 	
+	// Si es string o array uso el .length para el máximo
 	else if( tipoAle2 == "string"
 		|| tipoAle2 == "Array" ){
 		ale2	= ale2.length; }
 	
+	// Si el 2º parámetro es null su máximo será de 50
 	else if( tipoAle2 == "null" ) { ale2	= 50; }
 	
+	// Si el 2º parámetro es undefined su máximo será de 100
 	else if( tipoAle2 == "undefined" ) { ale2	= 100; }
 	
 	// aleatorio de boleanos
