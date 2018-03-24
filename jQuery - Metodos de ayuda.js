@@ -13,35 +13,35 @@
 	La clase ayuda se llama abajo de este script: Es una variable cualquiera llamando a una clase;
 */
 /* Propiedades
-	_parametroInfo			: Argumento para pedir información sobre la función (puede cambiar) (predeterminado: _i)
-	_resultado				: Almacena el último resultado.
-	_error					: Almacena el último error.
-	_errorTiempo			: Tiempo que tarda el error, mostrado por html, antes de desvanecerse.
-	_errorTiempoOpacidad	: Tiempo que tarda el error, mostrado por html, en desvanecerse.
-	_errorEstilo			: Estilo CSS que tendrá el error al mostrarse.
-	_cargandoImg			: ubicación de la imagen de carga.
+	_parametroInfo       : Argumento para pedir información sobre la función (puede cambiar) (predeterminado: _i)
+	_resultado           : Almacena el último resultado.
+	_error               : Almacena el último error.
+	_errorTiempo         : Tiempo que tarda el error, mostrado por html, antes de desvanecerse.
+	_errorTiempoOpacidad : Tiempo que tarda el error, mostrado por html, en desvanecerse.
+	_errorEstilo         : Estilo CSS que tendrá el error al mostrarse.
+	_cargandoImg         : ubicación de la imagen de carga.
 */
 /* Get (obtener), Set (insertar), Rem (Eliminar)
 Get:
-	get_resultado				: Obtiene el resultado almacenado.
-	get_error					: Obtiene el error almacenado.
-	get_errorEstilo				: Obtiene el CSS del error o con un argumento se obtiene la busqueda.
-	get_errorEstilo_toString	: Obtiene el CSS del error en formato String.
-	get_cookie					: Obtiene una cookie.
-	get_cargandoImg				: Obtiene la dirección de la imagen cargando.
-	get_parametroInfo			: Obtiene el argumento para obtener información sobre la función.
+	get_resultado            : Obtiene el resultado almacenado.
+	get_error                : Obtiene el error almacenado.
+	get_errorEstilo          : Obtiene el CSS del error o con un argumento se obtiene la busqueda.
+	get_errorEstilo_toString : Obtiene el CSS del error en formato String.
+	get_cookie               : Obtiene una cookie.
+	get_cargandoImg          : Obtiene la dirección de la imagen cargando.
+	get_parametroInfo        : Obtiene el argumento para obtener información sobre la función.
 
 Set:
-	set_resultado		: Inserta el resultado.
-	set_error			: Inserta el error.
-	set_errorEstilo		: Inserta o modifica un estilo de error HTML.
-	set_cookie			: Inserta una cookie.
-	set_cargandoImg		: Cambia la dirección de la imagen de carga.
-	set_parametroInfo	: Cambia la forma en la que se pide la información a la función.
+	set_resultado     : Inserta el resultado.
+	set_error         : Inserta el error.
+	set_errorEstilo   : Inserta o modifica un estilo de error HTML.
+	set_cookie        : Inserta una cookie.
+	set_cargandoImg   : Cambia la dirección de la imagen de carga.
+	set_parametroInfo : Cambia la forma en la que se pide la información a la función.
 
 Rem
-	rem_errorEstilo	: Elimina un estilo CSS del error HTML.
-	rem_cookie		: Elimina un acookie añadiendo una fecha atrasada.
+	rem_errorEstilo : Elimina un estilo CSS del error HTML.
+	rem_cookie      : Elimina un acookie añadiendo una fecha atrasada.
 */
 
 /* Funciones
@@ -49,7 +49,7 @@ Rem
 		Se mostrará la información por consola del navegador.
 		La función explicará para que sirve, mostrará algunos ejemplos y qué argumentos se admiten.
 	
-	Todas las funciones requieren de la versión 5.0 (esta versión)
+	Todas las funciones requieren de la versión 5.0
 	error()
 	variables()
 	aleatorio()
