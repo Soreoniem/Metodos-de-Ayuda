@@ -1,8 +1,6 @@
 ﻿/**
-	Metodos de ayuda versión: 5.0
-	© Copyright 2058, JuanLu Corp.
-	
-	Mejoras
+	Metodos de ayuda versión: 5.2
+	© Copyright 2059, JuanLu Corp.
 */
 /* IMPORTANTE
 	Existe una palabra clave "_i" que se puede pasar como primer parámetro para obtener una ayuda sobre esa función.
@@ -87,7 +85,7 @@ class Ayuda{
 		this._resultado				= "";	// Almacena el último resultado
 		this._error					= "";	// Almacena el último error
 		this._errorTiempo			= 3000;	// Siempo en milSegundos
-		this._errorTiempoOpacidad	= 500	// Tiempo en miliSegundos
+		this._errorTiempoOpacidad	= 500;	// Tiempo en miliSegundos
 		this._errorEstilo = {			// Estilos para el error por html
 				"position"			: "fixed",
 				"top"				: "0px",
@@ -113,11 +111,18 @@ class Ayuda{
 		};
 		this._cargandoImg			= "./Imgs/cargando.gif";
 		this._parametroInfo			= "_i";
+		this._ventanas = {
+			"grande"	: 1200,
+			"normal"	: 992,
+			"pequeña"	: 768,
+			"enana"		: 480,
+			"diminuta"	: 0
+		};
 	}
 	
-	get_resultado()		{ return this._resultado; }
-	get_error()			{ return this._error; }
-	get_errorEstilo()	{
+	get_resultado()	{ return this._resultado; }
+	get_error()		{ return this._error; }
+	get_errorEstilo(){
 		if( arguments.length == 0 ){
 			return this._errorEstilo;
 		} else {
@@ -152,17 +157,37 @@ class Ayuda{
 	}
 	get_cargandoImg()	{ return this._cargandoImg; }
 	get_parametroInfo()	{ return this._parametroInfo; }
+	get_ventanas()		{ return this._ventanas; }
 	
 	set_resultado(resultado)			{ this._resultado	= resultado;			return this; }
 	set_error(error)					{ this._error		= error;				return this; }
 	set_errorEstilo(estilo, propiedad)	{ this._errorEstilo[estilo] = propiedad;	return this; }
 	set_cookie(nombre, valor){
-		if( this.variables(nombre, "string") ){
-			document.cookie = nombre +"="+ valor;
+		if(arguments[0] == this.get_parametroInfo()){
+			console.clear();
+			this.c(
+				"Información sobre: ayuda.set_cookie(nombre, valor)",
+				"",
+				"▼ Información:",
+				"Esta función sirve para almacenar cookies en el navegador web.",
+				"",
+				"▼ Argumentos:",
+				"Es necesario 1 argumento.",
+				"1r Argumento	: Es el nombre que recibirá la nueva cookie",
+				"2º Argumento	: Es el valor que tendrá la cookie.",
+				"",
+				"▼ Ejemplos:",
+				"ayuda.set_cookie(\"miCookie\", \"valorCookie\").",
+				"ayuda.set_cookie(\"miCookie\", 14)."
+			);
 		} else {
-			this.error("La primera variable debe ser de tipo string", "set_cookie("+ arguments[0] +"("+ this.variables(arguments[0]) +"), "+ arguments[1] +"("+ this.variables(arguments[1]) +"))", "html");
+			if( this.variables(nombre, "string") ){
+				document.cookie = nombre +"="+ valor;
+			} else {
+				this.error("La primera variable debe ser de tipo string", "set_cookie("+ arguments[0] +"("+ this.variables(arguments[0]) +"), "+ arguments[1] +"("+ this.variables(arguments[1]) +"))", "html");
+			}
+			return this;
 		}
-		return this;
 	}
 	set_cargandoImg(ruta){
 		if( this.variables(ruta, "string") ){
@@ -172,7 +197,15 @@ class Ayuda{
 		}
 		return this;
 	}
-	set_parametroInfo(){ this._parametroInfo = arguments[0]; }
+	set_parametroInfo(){ this._parametroInfo = arguments[0]; return this; }
+	set_ventana(){
+		if( this.variables(arguments[0], "texto") && this.variables(arguments[1], "number") ){
+			this._ventanas[arguments[0]] = arguments[1];
+		} else {
+			this.error("Para insertar una nueva ventana se necesitan 2 parámetros: Nombre de la ventana(String) y tamaño(Number)", "set_ventana(String, Number)");
+		}
+		return this;
+	}
 	
 	rem_errorEstilo(estilo)	{ delete this._errorEstilo[estilo];	return this;}
 	rem_cookie(){
@@ -186,6 +219,7 @@ class Ayuda{
 		}
 		return this;
 	}
+	rem_ventana(){ delete this._ventanas[arguments[0]]; return this; }
 	
 	error(){
 	//La función explicará para que sirve, mostrará algunos ejemplos y qué argumentos se admiten.
@@ -231,7 +265,7 @@ class Ayuda{
 				this.set_error("¡Error! Encontrado un error.");
 			
 			// 1 Argumento: Mensaje
-			} else if( arguments.length == 1 ) {
+			} else if( arguments.length == 1 ){
 				
 				if( this.variables(arguments[0], "string") ){
 					var argumMinus = arguments[0].toLowerCase();
@@ -307,7 +341,7 @@ class Ayuda{
 				}
 			
 			// 2 Argumentos: Mensaje y Título|Tipo
-			} else if( arguments.length == 2 ) {
+			} else if( arguments.length == 2 ){
 				// Saber el tipo de salida
 				var salida = {
 					"tipo"		: "predeterminado",
@@ -874,7 +908,7 @@ class Ayuda{
 					extra = "";
 					// Actualizar color según el tipo de dato
 					var color =	(tipo	== "undefined")?	"gray"
-						:	(tipo	== "boolean")?		((arguments[i])? "green": "red")
+						:	(tipo	== "boolean")?		((arguments[0])? "green": "red")
 						:	(tipo	== "null")?			"darkmagenta"
 						:	(tipo	== "number")?		"blue"
 						:	(tipo	== "nan")?			"blueviolet"
@@ -986,12 +1020,139 @@ class Ayuda{
 			this.error("Es necesario 2 o 3 parámetros y todos ellos de tipo numérico", "Cantidad de parámetros incorrecta");
 		}
 	}
+	
+	ventana(){
+	//La función explicará para que sirve, mostrará algunos ejemplos y qué argumentos se admiten.
+		if(arguments[0] == this.get_parametroInfo()){
+			console.clear();
+			this.c(
+				"Información sobre: ayuda.get_ventana()",
+				"",
+				"▼ Información:",
+				"Esta función te dará una anchura de ventana según la hayas configurado.",
+				"Si la ventana actual es más grande o igual te dará un resultado.",
+				"Si no hay ventanas más grandes o iguales te dará un Sting vacío.",
+				"Recomiendo cambiar las ventanas manualmente pero también se pueden llamar a metodos para ello.",
+				"Configura las ventanas que quieras con las funciónes:",
+				"set_ventana(\"nombre\", tamaño)	Añade una nueva ventana.",
+				"rem_ventana(\"nombre\")	Elimina una ventana mediante el nombre.",
+				"",
+				"▼ Argumentos:",
+				"No necesita argumentos.",
+				"",
+				"▼ Mejor uso:",
+				"Recomiendo su uso en estas líneas de código jQuery:",
+				"// Añade un atributo al body y lo actualiza al cambiar de tamaño",
+				"$(document).ready(function(){",
+				"	$(\"body\").attr(\"ayuda_ventana\", ayuda.ventana());",
+				"	$(window).resize(function(){",
+				"		$(\"body\").attr(\"ayuda_ventana\", ayuda.ventana());",
+				"	});",
+				"});"
+			);
+		} else {
+			var ventanaActual = $(document).outerWidth(true);	// Anchura de la ventana actual
+			var ventanaMasCercana = "sinDatos";					// Cuanto más cerca esté de 0 más se acercará a la ventana actual
+			
+			var longitud = "SinLongitud";
+			var minimoUno = false;
+			
+			// Itera sobre las anchuras disponibles y obtiene la anchura más próxima a la actual ventana y que encaje
+			for( var dato in this.get_ventanas() ){
+				longitud = ventanaActual - this.get_ventanas()[dato];
+				if( longitud >= 0 ){
+					
+					if( ventanaMasCercana == "sinDatos" ){
+						minimoUno = true;
+						ventanaMasCercana = [dato, longitud];
+					
+					} else if( longitud < ventanaMasCercana[1] ){
+						ventanaMasCercana = [dato, longitud];
+					}
+				}
+			}
+			
+			return ( minimoUno )? ventanaMasCercana[0] : "";
+		}
+	}
+	
+	esMovil(){
+	//La función explicará para que sirve, mostrará algunos ejemplos y qué argumentos se admiten.
+		if(arguments[0] == this.get_parametroInfo()){
+			console.clear();
+			this.c(
+				"Información sobre: ayuda.esMovil()",
+				"",
+				"▼ Información:",
+				"Comprobará si se está usando un movil (smartphone).",
+				"Devolverá true si es un movil o false si no lo es.",
+				"",
+				"▼ Argumentos:",
+				"No necesita argumentos."
+			);
+		} else {
+			var info = navigator.userAgent;
+			this.set_resultado(
+				( info.match(/Android/i)
+					|| info.match(/BlackBerry/i)
+					|| info.match(/iPhone|iPad|iPod/i)
+					|| info.match(/Opera Mini/i)
+					|| info.match(/IEMobile|Windows Phone/i)
+					|| info.match(/Mobile/i)
+				)? true
+				: false
+			);
+			
+			return this.get_resultado();
+		}
+	}
 }
 
 // Llamada a la clase Ayuda
 ayuda = new Ayuda();
 
 /** Datos de Versiones
+
+►	Versión: 5.2
+	• Metodos corregidos:
+		· c()
+			Ahora ayuda.c(true) devuelve true con el color verde.
+	
+	• Metodos creados:
+		· esMovil()
+			◄ Boolean.
+			
+			Sin parametros
+			Obtiene booleano dependiendo de si es un movil o no.
+	
+	• Metodos modificados:
+		· set_cookie()
+			Ahora este metodo contiene una ayuda de uso.
+		
+
+►	Versión: 5.1
+	• atributos creados:
+		this._ventanas()	Almacena las ventanas disponibles.
+	
+	• Metodos creados:
+		· ventana()
+			◄ String	: Ventana actual
+			
+			Sin parametros
+			Obtiene un string con el tamaño de la ventana actual.
+			Se pueden modificar los tamaños a gusto.
+		
+		· get_ventanas()
+			◄ Object
+			
+			Obtiene las ventanas almacenadas.
+		
+		· rem_ventana(String, Number)
+			► String	: Nombre para la nueva ventana.
+			► Number	: Tamaño para la nueva ventana.
+			
+			Te dará la ventana actual si es mayor o igual a la anchura de la ventana actual.
+		
 
 ►	Versión: 5.0
 	• Metodos actualizados:
