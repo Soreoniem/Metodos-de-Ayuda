@@ -340,6 +340,7 @@ var datos = [
 
 $(document).ready(function(){
 	var tabla = $("table");
+	var imprimir = "";
 	
 	// Datos
 	

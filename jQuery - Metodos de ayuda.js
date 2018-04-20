@@ -1011,6 +1011,8 @@ class Ayuda{
 					console.log("%c"+ arguments[0] +" ",
 					"color:"+ color +";"+ extra +"background-color:rgba(219, 255, 254, 0.4);border-radius:3px 8px 5px 3px;border-right: solid 1px #1616bc;border-left: solid 5px #1616bc;margin-left: 3px;padding: 3px 0px;padding-left: 10px; font-size:	13px;");
 				}
+			
+			// 2 o más Argumentos
 			} else {
 				for( var i=0, extra, color, tipo ; i<arguments.length ; i++ ){
 					// Obtener el tipo de dato
