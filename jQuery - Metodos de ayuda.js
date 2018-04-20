@@ -1,6 +1,6 @@
 ﻿/**
-	Metodos de ayuda versión: 5.2
-	© Copyright 2059, JuanLu Corp.
+	Metodos de ayuda versión: 5.2.2
+	© Copyright 2060, JuanLu Corp.
 */
 /* IMPORTANTE
 	Existe una palabra clave "_i" que se puede pasar como primer parámetro para obtener una ayuda sobre esa función.
@@ -199,22 +199,68 @@ class Ayuda{
 	}
 	set_parametroInfo(){ this._parametroInfo = arguments[0]; return this; }
 	set_ventana(){
-		if( this.variables(arguments[0], "texto") && this.variables(arguments[1], "number") ){
-			this._ventanas[arguments[0]] = arguments[1];
+		if( arguments[0] == this.get_parametroInfo() ){
+			console.clear();
+			this.c(
+				"Información sobre: ayuda.ventana(nuevaVentana, anchura)",
+				"",
+				"▼ Información:",
+				"Esta función sirve para añadir más ventanas y asignarle un ancho.",
+				"Cada ventana tiene su número.",
+				"get_ventana() Te dará una ventana igual o mayor a la anchura que cumpla con el ancho de la ventana actual del navegador.",
+				"",
+				"▼ Argumentos:",
+				"2 Argumentos.",
+				"Primer argumento (String): Será el nombre que se le dará a la nueva ventana o sustituirá la existente.",
+				"Segundo argumento (Number): Se asignará este ancho de ventana al nombre que se haya puesto en el primer argumento.",
+				"",
+				"▼ Ejemplos:",
+				"Ejemplo	: Resultado",
+				"ayuda.set_ventana(\"grande\", 1000)	: La ventana \"grande\" ahora tiene asignado 1000px.",
+				"ayuda.set_ventana(\"muy grande\", 1500)	: La ventana \"muy grande\" ahora tiene asignado 1500px."
+			);
 		} else {
-			this.error("Para insertar una nueva ventana se necesitan 2 parámetros: Nombre de la ventana(String) y tamaño(Number)", "set_ventana(String, Number)");
+			// Parametros: String y Number
+			if( this.variables(arguments[0], "texto") && this.variables(arguments[1], "number") ){
+				this._ventanas[arguments[0]] = arguments[1];
+			
+			// Tipo de los parámetros incorrecto
+			} else {
+				this.error("Para insertar una nueva ventana se necesitan 2 parámetros: Nombre de la ventana(String) y tamaño(Number)", "set_ventana(String, Number)");
+			}
 		}
 		return this;
 	}
 	
 	rem_errorEstilo(estilo)	{ delete this._errorEstilo[estilo];	return this;}
 	rem_cookie(){
-		var todosStrings = true;
-		for( var i=0 ; i<arguments.length ; i++ ){
-			if( this.variables(arguments[i], "string") ){
-				document.cookie = arguments[i] +"=; expires=Thu, 11 Jan 1992 00:00:00 UTC";
-			} else {
-				this.error("Para eliminar la cookie '"+ arguments[i] +"' pon el nombre de la cookie en formato string", "Se necesita el nombre de la cookie");
+		if( arguments[0] == this.get_parametroInfo() ){
+			console.clear();
+			this.c(
+				"Información sobre: ayuda.rem_cookie(nombre)",
+				"",
+				"▼ Información:",
+				"Elimina las cookies que se hayan solicitado.",
+				"Añade tantos parametros como cookies quieras eliminar.",
+				"Si la cookie no se ha podido eliminar se motrará un mensaje por la consola del navegador.",
+				"Para eliminarla a la cookie se le inserta una fecha de caducidad antigua.",
+				"",
+				"▼ Argumentos:",
+				"0 Argumentis: No eliminará nada",
+				"1 a infinitos argumentos: Elimina las cookies que se le hayan pedido.",
+				"",
+				"▼ Ejemplos:",
+				"Ejemplo	: Resultado",
+				"ayuda.rem_cookie(\"miCookie\", \"miCookie2\", \"mi cookie3\", \"micookie4\")	: Eliminará las cookies miCookie, miCookie2, mi cookie3 y micookie4."
+			);
+		} else {
+			var todosStrings = true;
+			for( var i=0 ; i<arguments.length ; i++ ){
+				if( this.variables(arguments[i], "string") ){
+					document.cookie = arguments[i] +"=; expires=Thu, 11 Jan 1992 00:00:00 UTC";
+				} else {
+					this.error("Para eliminar la cookie '"+ arguments[i] +"' pon el nombre de la cookie en formato string", "Se necesita el nombre de la cookie");
+				}
 			}
 		}
 		return this;
@@ -223,10 +269,10 @@ class Ayuda{
 	
 	error(){
 	//La función explicará para que sirve, mostrará algunos ejemplos y qué argumentos se admiten.
-		if(arguments[0] == this.get_parametroInfo()){
+		if( arguments[0] == this.get_parametroInfo() ){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.error()",
+				"Información sobre: ayuda.error(medio, titulo, mensaje)",
 				"",
 				"▼ Información:",
 				"Esta función sirve para informar sobre un error.",
@@ -236,15 +282,15 @@ class Ayuda{
 				"Console: Mostrará un error mediante la consola del navegador console.error().",
 				"",
 				"▼ Argumentos:",
-				"Admite hasta 3 argumentos.",
+				"Admite de 0 hasta 3 argumentos.",
 				"Puede ser cualquier tipo de dato para el Mensaje y el Título.",
 				"Palabras clave: \"html\", \"alert\", \"console\".",
 				"Las palabras clave son de tipo String y no importa si es mayúsculas y minúsculas",
 				"Las palabras clave pueden estár en cualquiera de las 3 posiciones.",
 				"0 Argumentos	: Error simple.",
-				"1 Argumento	: Mensaje personalizado por consola o Mensaje simple con una palabra clave.",
-				"2 Argumentos	: Mensaje y título del error o Mensaje y palabra clave",
-				"3 Argumentos	: Mensaje, Título y palabra clave",
+				"1 Argumento	: Mensaje personalizado por consola o Mensaje simple mediante una palabra clave.",
+				"2 Argumentos	: Título y mensaje del error o Mensaje y palabra clave",
+				"3 Argumentos	: Título, Mensaje y palabra clave",
 				"",
 				"▼ Ejemplos:",
 				"Ejemplo	: Resultado",
@@ -254,8 +300,8 @@ class Ayuda{
 				"ayuda.error(\"html\")	: Error simple por HTML.",
 				"ayuda.error(Mensaje)	: Mensaje de error porsonalizado por consola.",
 				"ayuda.error(\"HtMl\", Mensaje)	: Error personalizado y donde se mostrará.",
-				"ayuda.error(Mensaje, Titulo)	: Mensaje + Título Personalizados.",
-				"ayuda.error(Mensaje, \"conSole\", Titulo)	: Mensaje + Título + Palabra clave. Mensaje y medio personalizado."
+				"ayuda.error(Titulo, Mensaje)	: Título + Mensaje Personalizados.",
+				"ayuda.error(Título, \"conSole\", Mensaje)	: Título + Mensaje + Palabra clave."
 			);
 		} else {
 			// 0 Argumentos: Predeterminado
@@ -419,13 +465,14 @@ class Ayuda{
 						});
 					}, (this._errorTiempoOpacidad + 100 + this._errorTiempo + this._errorTiempoOpacidad));
 				
+				// Título + Mensaje
 				} else {
-					console.error("%c"+ arguments[1] +"\n"+ arguments[0] +". ",
+					console.error("%c"+ arguments[0] +"\n"+ arguments[1] +". ",
 					"color:#bf0202;border-radius:3px 8px 5px 3px;border-left: solid 5px #fe4040;margin-left: 3px;padding: 2px 0px;padding-left: 10px; font-size:13px;padding-top:3px;");
-					this.set_error(arguments[1] +": "+ arguments[0] +".");
+					this.set_error(arguments[0] +": "+ arguments[1] +".");
 				}
 			
-			// 3 Argumentos: Mensaje + Título + Tipo
+			// 3 Argumentos: Tipo + Título + Mensaje
 			} else if( arguments.length == 3 ){
 				var datos = [arguments[0], arguments[1], arguments[2]];
 				// Saber el tipo de salida
@@ -444,16 +491,16 @@ class Ayuda{
 					}
 				}
 				
-				// Mensaje + Título + Alert
+				// Alert + Título + Mensaje
 				if( salida == "alert" ){
-					alert("¡"+ datos[1] +"!\n"+ datos[0] +".");
+					alert("¡"+ datos[0] +"!\n"+ datos[1] +".");
 				
-				// Mensaje + Título + HTML
+				// HTML + Título + Mensaje
 				} else if( salida == "html" ){
 					// Añadir HTML
 					$("body").append(
 						"<div class=\"ayuda_error\" style=\""+ this.get_errorEstilo_toString() +"\">"
-						+	"<div style=\"font-weight:bold;width:100%;border-bottom:"+ this.get_errorEstilo("border") +";padding-bottom:5px;margin-bottom:5px;text-align:center;\">¡"+ datos[1] +"!</div> "+ datos[0] +"."
+						+	"<div style=\"font-weight:bold;width:100%;border-bottom:"+ this.get_errorEstilo("border") +";padding-bottom:5px;margin-bottom:5px;text-align:center;\">¡"+ datos[0] +"!</div> "+ datos[1] +"."
 						+"</div>"
 					);
 					
@@ -491,13 +538,13 @@ class Ayuda{
 						});
 					}, (this._errorTiempoOpacidad + 100 + this._errorTiempo + this._errorTiempoOpacidad));
 					
-				// Mensaje + Título + Console
+				// Console + Título + Mensaje
 				} else {
-					console.error("%c¡"+ arguments[1] +"!\n"+ arguments[0] +". ",
+					console.error("%c¡"+ datos[0] +"!\n"+ datos[1] +". ",
 					"color:#bf0202;border-radius:3px 8px 5px 3px;border-left: solid 5px #fe4040;margin-left: 3px;padding: 2px 0px;padding-left: 10px; font-size:13px;padding-top:3px;");
 				}
 				
-				this.set_error(datos[1] +": "+ datos[0]);
+				this.set_error(datos[0] +": "+ datos[1]);
 			}
 			
 		}
@@ -548,7 +595,7 @@ class Ayuda{
 			// 0 Argumentos: Undefined
 			if( arguments.length == 0 ){
 				this.set_resultado(undefined);
-				return undefined;
+				return "undefined";
 			
 			// 1 Argumento: Saber el tipo de variable
 			} else if(arguments.length == 1){
@@ -686,8 +733,7 @@ class Ayuda{
 				}
 			}
 			
-			// 0 Argumentos
-			// 1 Argumento e Indefinido
+			// 0 Argumento e Indefinido
 			if( arguments.length == 0
 				|| arguments.length == 1 && this.variables(arguments[0], undefined) ){
 					this.set_resultado(parseInt(Math.round(Math.random() * ((100 - 0 +1) - 1) + 0)));
@@ -734,19 +780,16 @@ class Ayuda{
 				// Object
 				} else if( this.variables(arguments[0], "object") ){
 					// obtiene la cantidad de datos dentro del objeto
-					var longitud	= -1;
-					var nombres		= [];
+					var arr	= [];
+					
+					// Itera el objeto
 					for( var dato in arguments[0] ){
-						longitud++;
-						nombres.push(dato);
+						arr.push(arguments[0][dato]);
 					}
 					
-					// Obtener un aleatorio según la longitud de los nombres
-					var aleatorio = parseInt(Math.round(Math.random() * (((nombres.length - 1) - 0 +1) - 1) + 0));
-					this.set_resultado(arguments[0][nombres[aleatorio]]);
-					return this.get_resultado();
+					// se llama a si mismo (this.aleatorio) pero esta vez es un array de objetos por lo que irá al aleatorio de array y no de objeto
+					return this.aleatorio(arr);
 				}
-				// Falta: Object
 			
 			// 2 Argumentos (especiales)
 			} else if( arguments.length == 2 ){
@@ -791,7 +834,7 @@ class Ayuda{
 				$("body").append(
 					"<style id=\"ayuda_cargando_estilo\">"
 					+	"#ayuda_cargando{"
-					+		"position:absolute;"
+					+		"position:fixed;"
 					+		"z-index:100;"
 							
 					+		"width:100%;"
@@ -803,7 +846,7 @@ class Ayuda{
 					+	"}"
 					+	"@keyframes blinker{50%{opacity:0.5;}}"
 					+	"#ayuda_cargando img{"
-					+		"position:absolute;"
+					+		"position:fixed;"
 					+		"top:40%;"
 					+		"left:40%;"
 					+		"border-radius:100%;"
@@ -839,7 +882,10 @@ class Ayuda{
 						.css("width",	"0%")
 						.css("height",	"0%")
 					;
-					cargandoIMG.css("min-width", "0px");
+					cargandoIMG
+						.css("min-width", "0px")
+						.css("width", "0%")
+					;
 				});
 				
 			// Desactivado → activando
@@ -849,7 +895,10 @@ class Ayuda{
 					.css("width",	"100%")
 					.css("height",	"100%")
 				;
-				cargandoIMG.css("min-width", "100px");
+				cargandoIMG
+					.css("min-width", "100px")
+					.css("width", "40%")
+				;
 				// Encendiendo
 				$("#ayuda_cargando, ayuda_cargando img").animate({
 					opacity: 1
@@ -877,11 +926,16 @@ class Ayuda{
 				"Si es false mostrará el false de color rojo, etc."
 			);
 		} else {
+			// Sin argumento
 			if( arguments.length == 0 ){
 				console.log("%c ",
 				"color:black;background-color:rgba(219, 255, 254, 0.4);border-radius:3px 8px 5px 3px;border-left: solid 5px #1616bc;margin-left: 3px;padding: 3px 0px;padding-left: 10px; font-size:	13px;");
+				
+			// 1 Argumento
 			} else if( arguments.length == 1 ){
 				tipo = this.variables(arguments[0]);
+				
+				// Array
 				if( tipo == "array" ){
 					var imprimir	= "Array ";
 					var espacio		= " ";
@@ -896,6 +950,36 @@ class Ayuda{
 							}
 							
 							imprimir += x +" [►"+ arguments[0][x] +"◄]";
+						}
+					}
+					
+					// Línea final
+					imprimir += "\n" +"└────────";
+					console.log("%c"+ imprimir +" ",
+					"background-color:rgba(219, 255, 254, 0.4);border-radius:3px 8px 5px 3px;border-right: solid 1px #1616bc;border-left: solid 5px #1616bc;margin-left: 3px;padding: 3px 0px;padding-left: 10px; font-size:	13px;");
+				
+				// Object
+				} else if(tipo == "object"){
+					var imprimir	= "Object ";
+					var espacio		= " ";
+					
+					// Calcular longitud
+					var longitud = 0;
+					for( var dato in arguments[0] ){
+						longitud++;
+					}
+					// Objeto
+					if( longitud > 0 ){
+						var x=-1;
+						for( var dato in arguments[0] ){
+							x++;
+							imprimir += "\n" +"│ ";
+							
+							for( var y=0 ; y<(((longitud -1) +"").length - (x +"").length) ; y++ ){
+								imprimir += espacio;
+							}
+							
+							imprimir += x +" [►{\""+ dato +"\": "+ arguments[0][dato] +"}◄]";
 						}
 					}
 					
@@ -1106,6 +1190,126 @@ class Ayuda{
 			return this.get_resultado();
 		}
 	}
+	
+	// 1 Argumento: Formateará el texto
+	formatearTexto(){
+		// La función explicará para que sirve, mostrará algunos ejemplos y qué argumentos se admiten.
+		if(arguments[0] == this.get_parametroInfo()){
+			console.clear();
+			this.c(
+				"Información sobre: ayuda.formatearTexto(string, \" \", \"	\", \"\\n\")",
+				"",
+				"▼ Información:",
+				"Eliminará los huecos extra, las tabulaciones y los saltos de línea",
+				"Si usas palabras clave solo se modificará la frase quitando las palabras clave que hayas elegido",
+				"",
+				"▼ Argumentos",
+				"Admite 1 a 4 argumentos.",
+				"Solo admite Strings.",
+				"Palabras clave: \" \"(espacio), \"	\"(tabulación), \"\\n\"(salto de línea)",
+				"Las palabras clave sirven para indicar que solo se formatee la frase con la palabra clave indicada",
+				"1 Argumento		: Transforma a una frase de una sola línea.",
+				"2 a 4 Argumentos	: Puedes especificar que quiere que haga la función mediante las palabras clave.",
+				"",
+				"▼ Ejemplos:",
+				"Ejemplo	: Resultado",
+				"ayuda.formatearTexto(\"mi      frase\")	: \"mi frase\".",
+				"ayuda.formatearTexto(\"mi\nfrase\")	: \"mi frase\".",
+				"ayuda.formatearTexto(\"mi\ngran      frase\", \"\\n\")	: \"mi gran      frase\".",
+				"ayuda.formatearTexto(\"mi\ngran      frase\", \" \")	: \"mi\ngran frase\"."
+			);
+		
+		// Error - 0 argumentos
+		} else if( arguments.length == 0 ){
+			this.error("formatearTexto()", "Todos los argumentos deben ser de tipo String y mínimo 1 String");
+		
+		// Existen argumentos
+		} else {
+			// Comprobar argumentos
+			var argumentosSonString = true;
+			for( var i=0 ; i<arguments.length ; i++ ){
+				if( ! this.variables(arguments[i], "string") ){
+					argumentosSonString = false;
+				}
+			}
+			
+			if( argumentosSonString ){
+				var palabrasClave = [
+					{
+						"palabra"	: "	",
+						"usar"		: false
+					},{
+						"palabra"	: "\n",
+						"usar"		: false
+					},{
+						"palabra"	: " ",
+						"usar"		: false
+					}
+				];
+				
+				
+				// Buscando la frase
+				var frase = "";
+				var existeClave = false;
+				var fraseEncontrada = false;
+				// Argumentos
+				for( var i=(arguments.length -1) ; i>-1 ; i-- ){
+					var palabraEncontrada = false;
+					
+					
+					// Palabras clave
+					for( var j=0 ; j<palabrasClave.length ; j++ ){
+						if( arguments[i] == palabrasClave[j].palabra ){
+							palabraEncontrada = true;
+							palabrasClave[j].usar = true;
+							existeClave = true;
+						}
+					}
+					
+					if( ! palabraEncontrada ){
+						fraseEncontrada = true;
+						frase = arguments[i];
+					}
+				}
+				
+				// Error - Frase no encontrada.
+				if( ! fraseEncontrada ){
+					this.error("formatearTexto()", "Se necesita una frase aparte de la/s palabra/s clave");
+				
+				// Existe una frase
+				} else {
+					// Si todas las palabras clave es false quiere decir que las usará todas (algo un poco absurdo que luego se cambiará la lógica)
+					if( ! existeClave ){
+						// Activar todas las palabras clave
+						for( var i=0 ; i<palabrasClave.length ; i++ ){
+							palabrasClave[i].usar = true;
+						}
+					}
+				}
+				
+				for( var p=0, reconstruir="" ; p<palabrasClave.length ; p++, reconstruir="" ){
+					// Si se ha indicado usar la palabra clave
+					if( palabrasClave[p].usar ){
+						// Eliminar: Tabulaciones, saltos de línea, espacios extra
+						frase = frase.split(palabrasClave[p].palabra);
+						for( var i=(frase.length -1) ; i>-1 ; i-- ){
+							if( frase[i] == "" ){
+								frase.splice(i, 1);
+							}
+						}
+						
+						// Reestructurar (Array → String)
+						for( var i=0 ; i<frase.length ; i++ ){ reconstruir += " "+ frase[i]; }
+						frase = reconstruir.substr(1)
+					}
+				}
+				
+				this.set_resultado(frase);
+				
+				return frase;
+			}
+		}
+	}
 }
 
 // Llamada a la clase Ayuda
@@ -1113,21 +1317,53 @@ ayuda = new Ayuda();
 
 /** Datos de Versiones
 
+►	Versión: 5.2.2
+	• Metodos corregidos:
+		· variables()
+			Ahora ayuda.variables() devuelve "undefined" y no undefined debido a que la salida debe ser de tipo string sin importar el resultado.
+			
+		· cargando()
+			La imagen no desaparecía. En un futuro se mejorará.
+		
+	• Metodos modificados:
+		· set_ventana()
+			Ahora contiene una explicación de su uso.
+		
+		· set_ventana()
+			Ahora contiene una explicación de su uso.
+
+►	Versión: 5.2.1
+	• Metodos creados:
+		· formatearTexto()
+			◄ String.
+			
+			1 Parametro (frase): Te devolverá la frase sin tabulaciones, sin saltos de línea y sin espacios extra.
+			2 o más parametros (frase + palabras clave): Añade como argumento que quieres modificar de la frase
+	
+	• Metodos modificados:
+		· error()
+			Ahora se escribe primero el título y luego el mensaje para una mejor lógica de escritura.
+		
+		· aleatorio(objeto)
+			Ahora el aleatorio de los objetos te devuelve un objeto de dentro y no el resultado de uno de los objetos.
+				Ejemplo: ayuda.aleatorio({"uno":1, "dos":2, "tres":3});
+					Antes: Devuelve 1, 2 o 3.
+					Ahora: Devuelve {"uno":1}, {"dos":2} o {"tres":3}.
+		
+		· c(objeto)
+			Ahora los objetos de pueden ver como un array.
+
 ►	Versión: 5.2
 	• Metodos corregidos:
 		· c()
 			Ahora ayuda.c(true) devuelve true con el color verde.
 	
-	• Metodos creados:
-		· esMovil()
-			◄ Boolean.
-			
-			Sin parametros
-			Obtiene booleano dependiendo de si es un movil o no.
-	
 	• Metodos modificados:
 		· set_cookie()
 			Ahora este metodo contiene una ayuda de uso.
+			
+		· cargando()
+			Se ha cambiado el CSS a "position:fixed;".
 		
 
 ►	Versión: 5.1
