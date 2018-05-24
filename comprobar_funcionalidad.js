@@ -316,11 +316,15 @@ var datos = [
 		"resultado"	: pruebas.variables(pruebas.esMovil(), "boolean")
 	},{
 		"nombre"	: "formatearTexto",
-		"resultado"	: pruebas.formatearTexto("prueba      Nº46")	== "prueba Nº46"
-						&& pruebas.formatearTexto("prueba\nNº47")	== "prueba Nº47"
-						&& pruebas.formatearTexto("prueba	Nº48")	== "prueba Nº48"
-						&& pruebas.formatearTexto("prueba	Nº49", "\n")	== "prueba	Nº49"
+		"resultado"	: pruebas.formatearTexto("prueba      Nº46")				== "prueba Nº46"
+						&& pruebas.formatearTexto("prueba\nNº47")				== "prueba Nº47"
+						&& pruebas.formatearTexto("prueba	Nº48")				== "prueba Nº48"
+						&& pruebas.formatearTexto("prueba	Nº49", "\n")		== "prueba	Nº49"
 						&& pruebas.formatearTexto("prueba   Nº50", "\n", "	")	== "prueba   Nº50"
+	},{
+		"nombre"	: "reemplazar",
+		"resultado"	: pruebas.reemplazar("Prueba Nº51", "51", "52") == "Prueba Nº52"
+						&& pruebas.reemplazar("Prueba Nº53", "prueba", "Prueba 54") == "Prueba Nº53"
 	}
 ];
 /*

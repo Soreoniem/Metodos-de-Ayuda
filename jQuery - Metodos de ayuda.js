@@ -1,6 +1,6 @@
 ﻿/**
-	Metodos de ayuda versión: 5.2.2
-	© Copyright 2060, JuanLu Corp.
+	Metodos de ayuda versión: 5.3
+	© Copyright 2061, JuanLu Corp.
 */
 /* IMPORTANTE
 	Existe una palabra clave "_i" que se puede pasar como primer parámetro para obtener una ayuda sobre esa función.
@@ -166,18 +166,18 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.set_cookie(nombre, valor)",
-				"",
-				"▼ Información:",
-				"Esta función sirve para almacenar cookies en el navegador web.",
-				"",
-				"▼ Argumentos:",
-				"Es necesario 1 argumento.",
-				"1r Argumento	: Es el nombre que recibirá la nueva cookie",
-				"2º Argumento	: Es el valor que tendrá la cookie.",
-				"",
-				"▼ Ejemplos:",
-				"ayuda.set_cookie(\"miCookie\", \"valorCookie\").",
+				"Información sobre: ayuda.set_cookie(nombre, valor)\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Esta función sirve para almacenar cookies en el navegador web.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"Es necesario 1 argumento.\n"+
+				"1r Argumento	: Es el nombre que recibirá la nueva cookie\n"+
+				"2º Argumento	: Es el valor que tendrá la cookie.\n"+
+				"\n"+
+				"▼ Ejemplos:\n"+
+				"ayuda.set_cookie(\"miCookie\", \"valorCookie\").\n"+
 				"ayuda.set_cookie(\"miCookie\", 14)."
 			);
 		} else {
@@ -202,21 +202,21 @@ class Ayuda{
 		if( arguments[0] == this.get_parametroInfo() ){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.ventana(nuevaVentana, anchura)",
-				"",
-				"▼ Información:",
-				"Esta función sirve para añadir más ventanas y asignarle un ancho.",
-				"Cada ventana tiene su número.",
-				"get_ventana() Te dará una ventana igual o mayor a la anchura que cumpla con el ancho de la ventana actual del navegador.",
-				"",
-				"▼ Argumentos:",
-				"2 Argumentos.",
-				"Primer argumento (String): Será el nombre que se le dará a la nueva ventana o sustituirá la existente.",
-				"Segundo argumento (Number): Se asignará este ancho de ventana al nombre que se haya puesto en el primer argumento.",
-				"",
-				"▼ Ejemplos:",
-				"Ejemplo	: Resultado",
-				"ayuda.set_ventana(\"grande\", 1000)	: La ventana \"grande\" ahora tiene asignado 1000px.",
+				"Información sobre: ayuda.ventana(nuevaVentana, anchura)\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Esta función sirve para añadir más ventanas y asignarle un ancho.\n"+
+				"Cada ventana tiene su número.\n"+
+				"get_ventana() Te dará una ventana igual o mayor a la anchura que cumpla con el ancho de la ventana actual del navegador.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"2 Argumentos.\n"+
+				"Primer argumento (String): Será el nombre que se le dará a la nueva ventana o sustituirá la existente.\n"+
+				"Segundo argumento (Number): Se asignará este ancho de ventana al nombre que se haya puesto en el primer argumento.\n"+
+				"\n"+
+				"▼ Ejemplos:\n"+
+				"Ejemplo	: Resultado\n"+
+				"ayuda.set_ventana(\"grande\", 1000)	: La ventana \"grande\" ahora tiene asignado 1000px.\n"+
 				"ayuda.set_ventana(\"muy grande\", 1500)	: La ventana \"muy grande\" ahora tiene asignado 1500px."
 			);
 		} else {
@@ -237,20 +237,20 @@ class Ayuda{
 		if( arguments[0] == this.get_parametroInfo() ){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.rem_cookie(nombre)",
-				"",
-				"▼ Información:",
-				"Elimina las cookies que se hayan solicitado.",
-				"Añade tantos parametros como cookies quieras eliminar.",
-				"Si la cookie no se ha podido eliminar se motrará un mensaje por la consola del navegador.",
-				"Para eliminarla a la cookie se le inserta una fecha de caducidad antigua.",
-				"",
-				"▼ Argumentos:",
-				"0 Argumentis: No eliminará nada",
-				"1 a infinitos argumentos: Elimina las cookies que se le hayan pedido.",
-				"",
-				"▼ Ejemplos:",
-				"Ejemplo	: Resultado",
+				"Información sobre: ayuda.rem_cookie(nombre)\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Elimina las cookies que se hayan solicitado.\n"+
+				"Añade tantos parametros como cookies quieras eliminar.\n"+
+				"Si la cookie no se ha podido eliminar se motrará un mensaje por la consola del navegador.\n"+
+				"Para eliminarla a la cookie se le inserta una fecha de caducidad antigua.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"0 Argumentis: No eliminará nada\n"+
+				"1 a infinitos argumentos: Elimina las cookies que se le hayan pedido.\n"+
+				"\n"+
+				"▼ Ejemplos:\n"+
+				"Ejemplo	: Resultado\n"+
 				"ayuda.rem_cookie(\"miCookie\", \"miCookie2\", \"mi cookie3\", \"micookie4\")	: Eliminará las cookies miCookie, miCookie2, mi cookie3 y micookie4."
 			);
 		} else {
@@ -272,35 +272,35 @@ class Ayuda{
 		if( arguments[0] == this.get_parametroInfo() ){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.error(medio, titulo, mensaje)",
-				"",
-				"▼ Información:",
-				"Esta función sirve para informar sobre un error.",
-				"Puede mostrar el error por 3 medios: HTML, Alert, Cosole.",
-				"HTML: Mostrará un mensaje por html que luego se irá.",
-				"Alert: Mostrará el error mediante alert().",
-				"Console: Mostrará un error mediante la consola del navegador console.error().",
-				"",
-				"▼ Argumentos:",
-				"Admite de 0 hasta 3 argumentos.",
-				"Puede ser cualquier tipo de dato para el Mensaje y el Título.",
-				"Palabras clave: \"html\", \"alert\", \"console\".",
-				"Las palabras clave son de tipo String y no importa si es mayúsculas y minúsculas",
-				"Las palabras clave pueden estár en cualquiera de las 3 posiciones.",
-				"0 Argumentos	: Error simple.",
-				"1 Argumento	: Mensaje personalizado por consola o Mensaje simple mediante una palabra clave.",
-				"2 Argumentos	: Título y mensaje del error o Mensaje y palabra clave",
-				"3 Argumentos	: Título, Mensaje y palabra clave",
-				"",
-				"▼ Ejemplos:",
-				"Ejemplo	: Resultado",
-				"ayuda.error()	: Error simple por consola.",
-				"ayuda.error(\"console\")	: Error simple por consola.",
-				"ayuda.error(\"alert\")	: Error simple mediante Alert.",
-				"ayuda.error(\"html\")	: Error simple por HTML.",
-				"ayuda.error(Mensaje)	: Mensaje de error porsonalizado por consola.",
-				"ayuda.error(\"HtMl\", Mensaje)	: Error personalizado y donde se mostrará.",
-				"ayuda.error(Titulo, Mensaje)	: Título + Mensaje Personalizados.",
+				"Información sobre: ayuda.error(medio, titulo, mensaje)\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Esta función sirve para informar sobre un error.\n"+
+				"Puede mostrar el error por 3 medios: HTML, Alert, Cosole.\n"+
+				"HTML: Mostrará un mensaje por html que luego se irá.\n"+
+				"Alert: Mostrará el error mediante alert().\n"+
+				"Console: Mostrará un error mediante la consola del navegador console.error().\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"Admite de 0 hasta 3 argumentos.\n"+
+				"Puede ser cualquier tipo de dato para el Mensaje y el Título.\n"+
+				"Palabras clave: \"html\", \"alert\", \"console\".\n"+
+				"Las palabras clave son de tipo String y no importa si es mayúsculas y minúsculas\n"+
+				"Las palabras clave pueden estár en cualquiera de las 3 posiciones.\n"+
+				"0 Argumentos	: Error simple.\n"+
+				"1 Argumento	: Mensaje personalizado por consola o Mensaje simple mediante una palabra clave.\n"+
+				"2 Argumentos	: Título y mensaje del error o Mensaje y palabra clave\n"+
+				"3 Argumentos	: Título, Mensaje y palabra clave\n"+
+				"\n"+
+				"▼ Ejemplos:\n"+
+				"Ejemplo	: Resultado\n"+
+				"ayuda.error()	: Error simple por consola.\n"+
+				"ayuda.error(\"console\")	: Error simple por consola.\n"+
+				"ayuda.error(\"alert\")	: Error simple mediante Alert.\n"+
+				"ayuda.error(\"html\")	: Error simple por HTML.\n"+
+				"ayuda.error(Mensaje)	: Mensaje de error porsonalizado por consola.\n"+
+				"ayuda.error(\"HtMl\", Mensaje)	: Error personalizado y donde se mostrará.\n"+
+				"ayuda.error(Titulo, Mensaje)	: Título + Mensaje Personalizados.\n"+
 				"ayuda.error(Título, \"conSole\", Mensaje)	: Título + Mensaje + Palabra clave."
 			);
 		} else {
@@ -556,39 +556,39 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.variables()",
-				"",
-				"▼ Información:",
-				"Esta función sirve para comprovar variables.",
-				"Puede devolver el tipo de la variable o comparar variables",
-				"",
-				"▼ Argumentos:",
-				"Admite de 0 a infinitos argumentos.",
-				"Admite cualquier tipo de dato.",
-				"0 Argumentos	: Es como si pusieses undefined.",
-				"1 Argumento	: Obtiene el tipo del argumento en formato String y minúscula.",
-				"2 Argumentos o más	: Devuelve true si todos los argumentos son del mismo tipo.",
-				"Las Palabras clave son el tipo de variables pero en formato String.",
-				"Aunque las palabras clave son String emularán su tipo: La palabra clave \"number\" se usará como un número cualquiera.",
-				"Palabras clave: \"Undefined\", \"Null\", \"Boolean\", \"String\", \"Number\", \"NaN\", \"Infinity\", \"Array\""
-				+", \"Object\", \"Function\" y \"Class\".",
-				"Las palabras clave deben ser de tipo String, no impoerta si es mayúsculas o minúsculas o combinado de ellas.",
-				"",
-				"▼ Ejemplos:",
-				"Ejemplo	: Resultado",
-				"ayuda.variables()	: \"undefined\".",
-				"ayuda.variables(false)	: \"boolean\".",
-				"ayuda.variables(0/5)	: \"infinity\".",
-				"ayuda.variables({\"myObject\":13})	: \"object\".",
-				"ayuda.variables(ayuda)	: \"class\".",
-				"ayuda.variables(\"number\")	: \"number\".",
-				"ayuda.variables(\"funCtioN\")	: \"function\".",
-				"ayuda.variables(\"nAn\")	: \"nan\".",
-				"ayuda.variables(true, \"boolean\")	: true.",
-				"ayuda.variables(Math.PI, \"Number\", -302)	: true.",
-				"ayuda.variables(13, \"13\")	: \"false\".",
-				"ayuda.variables(\"strING\", \"13\")	: true.",
-				"ayuda.variables(\"strING\", \"13\", \"String\", \"Lorem Ipsum\")	: true.",
+				"Información sobre: ayuda.variables()\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Esta función sirve para comprovar variables.\n"+
+				"Puede devolver el tipo de la variable o comparar variables\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"Admite de 0 a infinitos argumentos.\n"+
+				"Admite cualquier tipo de dato.\n"+
+				"0 Argumentos	: Es como si pusieses undefined.\n"+
+				"1 Argumento	: Obtiene el tipo del argumento en formato String y minúscula.\n"+
+				"2 Argumentos o más	: Devuelve true si todos los argumentos son del mismo tipo.\n"+
+				"Las Palabras clave son el tipo de variables pero en formato String.\n"+
+				"Aunque las palabras clave son String emularán su tipo: La palabra clave \"number\" se usará como un número cualquiera.\n"+
+				"Palabras clave: \"Undefined\", \"Null\", \"Boolean\", \"String\", \"Number\", \"NaN\", \"Infinity\", \"Array\\n"+
+				+", \"Object\", \"Function\" y \"Class\".\n"+
+				"Las palabras clave deben ser de tipo String, no impoerta si es mayúsculas o minúsculas o combinado de ellas.\n"+
+				"\n"+
+				"▼ Ejemplos:\n"+
+				"Ejemplo	: Resultado\n"+
+				"ayuda.variables()	: \"undefined\".\n"+
+				"ayuda.variables(false)	: \"boolean\".\n"+
+				"ayuda.variables(0/5)	: \"infinity\".\n"+
+				"ayuda.variables({\"myObject\":13})	: \"object\".\n"+
+				"ayuda.variables(ayuda)	: \"class\".\n"+
+				"ayuda.variables(\"number\")	: \"number\".\n"+
+				"ayuda.variables(\"funCtioN\")	: \"function\".\n"+
+				"ayuda.variables(\"nAn\")	: \"nan\".\n"+
+				"ayuda.variables(true, \"boolean\")	: true.\n"+
+				"ayuda.variables(Math.PI, \"Number\", -302)	: true.\n"+
+				"ayuda.variables(13, \"13\")	: \"false\".\n"+
+				"ayuda.variables(\"strING\", \"13\")	: true.\n"+
+				"ayuda.variables(\"strING\", \"13\", \"String\", \"Lorem Ipsum\")	: true.\n"+
 				"ayuda.variables(\"strING\", \"13\", \"String\", \"Lorem Ipsum\", \"boolean\")	: false."
 			);
 		} else {
@@ -681,37 +681,37 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.aleatorio()",
-				"",
-				"▼ Información:",
-				"Esta función sirve para obtener un aleatorio.",
-				"Esta función devuelve un aleatorio dependiendo de lo recibido como argumentos.",
-				"",
-				"▼ Argumentos:",
-				"Admite de 0 a infinitos argumentos.",
-				"Admite cualquier tipo de dato.",
-				"0 Argumentos	: Devuelve un número del 0 al 100.",
-				"1 Argumento	: Obtiene un aleatorio según el tipo del argumento.",
-				"2 Argumentos (especiales): Es si los 2 argumentos són numéricos o si uno es string y el otro numérico.",
-				"Si son 2 argumentos numéricos devolverá un número entre esos 2 números (incluyen los negativos).",
-				"Si el primer argumento es String y el otro numérico devolverá un String y su longitud del string será el número obtenido.",
-				"2 Argumentos o más (sin especiales): Se obtendrá un argumento aleatorio",
-				"",
-				"▼ Ejemplos teóricos:",
-				"Ejemplo	: Resultado",
-				"1 Argumento",
-				"Undefined devolverá un número entre 0 y 100 (1 argumento undefined o sin argumentos)",
-				"null, NaN, Infinity, function y class devolverán un número entre 0 y 10",
-				"Boolean	: true o false",
-				"Number	: 0 al numero",
-				"Array	: Devolverá un dato del array.",
-				"String	: Devolverá una palabra del String.",
-				"Object	: Devolverá un dato del objeto",
-				"2 Argumentos (especiales)",
-				"2 Números: ayuda.aleatorio(16, -17)	: Devuelve un número entr -17 y 16",
-				"String y Number: ayuda.aleatorio(\"Frase de prueba\", 5)	: Devolverá una cadena de la frase con longitud máxima de 5 carácteres.",
-				"Ejemplos: \"rase \", \"prueb\", \"eba\", \"se de\", \"ueba\"",
-				"2 Argumentos o más (no especiales)",
+				"Información sobre: ayuda.aleatorio()\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Esta función sirve para obtener un aleatorio.\n"+
+				"Esta función devuelve un aleatorio dependiendo de lo recibido como argumentos.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"Admite de 0 a infinitos argumentos.\n"+
+				"Admite cualquier tipo de dato.\n"+
+				"0 Argumentos	: Devuelve un número del 0 al 100.\n"+
+				"1 Argumento	: Obtiene un aleatorio según el tipo del argumento.\n"+
+				"2 Argumentos (especiales): Es si los 2 argumentos són numéricos o si uno es string y el otro numérico.\n"+
+				"Si son 2 argumentos numéricos devolverá un número entre esos 2 números (incluyen los negativos).\n"+
+				"Si el primer argumento es String y el otro numérico devolverá un String y su longitud del string será el número obtenido.\n"+
+				"2 Argumentos o más (sin especiales): Se obtendrá un argumento aleatorio\n"+
+				"\n"+
+				"▼ Ejemplos teóricos:\n"+
+				"Ejemplo	: Resultado\n"+
+				"1 Argumento\n"+
+				"Undefined devolverá un número entre 0 y 100 (1 argumento undefined o sin argumentos)\n"+
+				"null, NaN, Infinity, function y class devolverán un número entre 0 y 10\n"+
+				"Boolean	: true o false\n"+
+				"Number	: 0 al numero\n"+
+				"Array	: Devolverá un dato del array.\n"+
+				"String	: Devolverá una palabra del String.\n"+
+				"Object	: Devolverá un dato del objeto\n"+
+				"2 Argumentos (especiales)\n"+
+				"2 Números: ayuda.aleatorio(16, -17)	: Devuelve un número entr -17 y 16\n"+
+				"String y Number: ayuda.aleatorio(\"Frase de prueba\", 5)	: Devolverá una cadena de la frase con longitud máxima de 5 carácteres.\n"+
+				"Ejemplos: \"rase \", \"prueb\", \"eba\", \"se de\", \"ueba\"\n"+
+				"2 Argumentos o más (no especiales)\n"+
 				"Devuelve un argumento aleatorio"
 			);
 		} else {
@@ -818,13 +818,13 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.cargando()",
-				"",
-				"▼ Información:",
-				"Cada vez que se llama a la función muestra una imagen de carga o la quita.",
-				"",
-				"▼ Argumentos: No se usan argumentos exceptuando la información de la función",
-				"",
+				"Información sobre: ayuda.cargando()\n\n"+
+				"\n\n"+
+				"▼ Información:\n\n"+
+				"Cada vez que se llama a la función muestra una imagen de carga o la quita.\n\n"+
+				"\n\n"+
+				"▼ Argumentos: No se usan argumentos exceptuando la información de la función\n\n"+
+				"\n\n"+
 				"▼ Ejemplos: Simplemente llama a ayuda.cargando()"
 			);
 		} else {
@@ -913,16 +913,16 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.c()",
-				"",
-				"▼ Información:",
-				"Es lo mismo que console.log() pero con un estilo de colores diferente.",
-				"",
-				"▼ Argumentos:",
-				"Admite de 0 a infinitos argumentos de cualquier tipo.",
-				"Si es solo 1 argumento tendrá un color de fuente diferente según el tipo argumento (no afecta a los valores).",
-				"Si es solo 1 array se mostrará de forma diferente",
-				"Si es true mostrará el true de color verde",
+				"Información sobre: ayuda.c()\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Es lo mismo que console.log() pero con un estilo de colores diferente.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"Admite de 0 a infinitos argumentos de cualquier tipo.\n"+
+				"Si es solo 1 argumento tendrá un color de fuente diferente según el tipo argumento (no afecta a los valores).\n"+
+				"Si es solo 1 array se mostrará de forma diferente\n"+
+				"Si es true mostrará el true de color verde\n"+
 				"Si es false mostrará el false de color rojo, etc."
 			);
 		} else {
@@ -1060,34 +1060,34 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.regla3()",
-				"",
-				"▼ Información:",
-				"Es la típica regla de 3.",
-				"",
-				"▼ Argumentos:",
-				"Admite de 2 a 3 argumentos, todos de tipo numérico.",
-				"Supongamos esta estratégia:",
-				"x1 → y1",
-				"x2 → ?",
-				"Si x1 es y1 cuanto será x2",
-				"Y la regla de 3 sería x2 * y1 / x1 y el resultado sería ?",
-				"2 Argumentos",
-				"Con la extrategia anterior y1 sería el número 100",
-				"el primer argumento es x1 y el segundo argumento es x2",
-				"3 Argumentos",
-				"Si cogemos el ejemplo anterior el número anterior es modificable",
-				"Primer argumento: x1",
-				"Segundo argumento: y1",
-				"Tercer argumento: x2",
-				"▼ Ejemplos:",
-				"Ejemplo	: Resultado",
-				"ayuda.regla3(100, 50)	: 50.",
-				"ayuda.regla3(750, 50)	: 6.66666....",
-				"ayuda.regla3(200, 400)	: 200. Si 200 es el máximo 400 es el doble",
-				"ayuda.regla3(200, 400, 100)	:200",
-				"ayuda.regla3(13, 130, 7)	:70",
-				"ayuda.regla3(400, 50, 100)	:12.5",
+				"Información sobre: ayuda.regla3()\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Es la típica regla de 3.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"Admite de 2 a 3 argumentos, todos de tipo numérico.\n"+
+				"Supongamos esta estratégia:\n"+
+				"x1 → y1\n"+
+				"x2 → ?\n"+
+				"Si x1 es y1 cuanto será x2\n"+
+				"Y la regla de 3 sería x2 * y1 / x1 y el resultado sería ?\n"+
+				"2 Argumentos\n"+
+				"Con la extrategia anterior y1 sería el número 100\n"+
+				"el primer argumento es x1 y el segundo argumento es x2\n"+
+				"3 Argumentos\n"+
+				"Si cogemos el ejemplo anterior el número anterior es modificable\n"+
+				"Primer argumento: x1\n"+
+				"Segundo argumento: y1\n"+
+				"Tercer argumento: x2\n"+
+				"▼ Ejemplos:\n"+
+				"Ejemplo	: Resultado\n"+
+				"ayuda.regla3(100, 50)	: 50.\n"+
+				"ayuda.regla3(750, 50)	: 6.66666....\n"+
+				"ayuda.regla3(200, 400)	: 200. Si 200 es el máximo 400 es el doble\n"+
+				"ayuda.regla3(200, 400, 100)	:200\n"+
+				"ayuda.regla3(13, 130, 7)	:70\n"+
+				"ayuda.regla3(400, 50, 100)	:12.5\n"+
 				"ayuda.regla3(100, 120, 50)	:60"
 			);
 		
@@ -1112,28 +1112,28 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.get_ventana()",
-				"",
-				"▼ Información:",
-				"Esta función te dará una anchura de ventana según la hayas configurado.",
-				"Si la ventana actual es más grande o igual te dará un resultado.",
-				"Si no hay ventanas más grandes o iguales te dará un Sting vacío.",
-				"Recomiendo cambiar las ventanas manualmente pero también se pueden llamar a metodos para ello.",
-				"Configura las ventanas que quieras con las funciónes:",
-				"set_ventana(\"nombre\", tamaño)	Añade una nueva ventana.",
-				"rem_ventana(\"nombre\")	Elimina una ventana mediante el nombre.",
-				"",
-				"▼ Argumentos:",
-				"No necesita argumentos.",
-				"",
-				"▼ Mejor uso:",
-				"Recomiendo su uso en estas líneas de código jQuery:",
-				"// Añade un atributo al body y lo actualiza al cambiar de tamaño",
-				"$(document).ready(function(){",
-				"	$(\"body\").attr(\"ayuda_ventana\", ayuda.ventana());",
-				"	$(window).resize(function(){",
-				"		$(\"body\").attr(\"ayuda_ventana\", ayuda.ventana());",
-				"	});",
+				"Información sobre: ayuda.get_ventana()\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Esta función te dará una anchura de ventana según la hayas configurado.\n"+
+				"Si la ventana actual es más grande o igual te dará un resultado.\n"+
+				"Si no hay ventanas más grandes o iguales te dará un Sting vacío.\n"+
+				"Recomiendo cambiar las ventanas manualmente pero también se pueden llamar a metodos para ello.\n"+
+				"Configura las ventanas que quieras con las funciónes:\n"+
+				"set_ventana(\"nombre\", tamaño)	Añade una nueva ventana.\n"+
+				"rem_ventana(\"nombre\")	Elimina una ventana mediante el nombre.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
+				"No necesita argumentos.\n"+
+				"\n"+
+				"▼ Mejor uso:\n"+
+				"Recomiendo su uso en estas líneas de código jQuery:\n"+
+				"// Añade un atributo al body y lo actualiza al cambiar de tamaño\n"+
+				"$(document).ready(function(){\n"+
+				"	$(\"body\").attr(\"ayuda_ventana\", ayuda.ventana());\n"+
+				"	$(window).resize(function(){\n"+
+				"		$(\"body\").attr(\"ayuda_ventana\", ayuda.ventana());\n"+
+				"	});\n"+
 				"});"
 			);
 		} else {
@@ -1167,13 +1167,13 @@ class Ayuda{
 		if(arguments[0] == this.get_parametroInfo()){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.esMovil()",
-				"",
-				"▼ Información:",
-				"Comprobará si se está usando un movil (smartphone).",
-				"Devolverá true si es un movil o false si no lo es.",
-				"",
-				"▼ Argumentos:",
+				"Información sobre: ayuda.esMovil()\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Comprobará si se está usando un movil (smartphone).\n"+
+				"Devolverá true si es un movil o false si no lo es.\n"+
+				"\n"+
+				"▼ Argumentos:\n"+
 				"No necesita argumentos."
 			);
 		} else {
@@ -1196,28 +1196,28 @@ class Ayuda{
 	// 1 Argumento: Formateará el texto
 	formatearTexto(){
 		// La función explicará para que sirve, mostrará algunos ejemplos y qué argumentos se admiten.
-		if(arguments[0] == this.get_parametroInfo()){
+		if( arguments[0] == this.get_parametroInfo() ){
 			console.clear();
 			this.c(
-				"Información sobre: ayuda.formatearTexto(string, \" \", \"	\", \"\\n\")",
-				"",
-				"▼ Información:",
-				"Eliminará los huecos extra, las tabulaciones y los saltos de línea",
-				"Si usas palabras clave solo se modificará la frase quitando las palabras clave que hayas elegido",
-				"",
-				"▼ Argumentos",
-				"Admite 1 a 4 argumentos.",
-				"Solo admite Strings.",
-				"Palabras clave: \" \"(espacio), \"	\"(tabulación), \"\\n\"(salto de línea)",
-				"Las palabras clave sirven para indicar que solo se formatee la frase con la palabra clave indicada",
-				"1 Argumento		: Transforma a una frase de una sola línea.",
-				"2 a 4 Argumentos	: Puedes especificar que quiere que haga la función mediante las palabras clave.",
-				"",
-				"▼ Ejemplos:",
-				"Ejemplo	: Resultado",
-				"ayuda.formatearTexto(\"mi      frase\")	: \"mi frase\".",
-				"ayuda.formatearTexto(\"mi\nfrase\")	: \"mi frase\".",
-				"ayuda.formatearTexto(\"mi\ngran      frase\", \"\\n\")	: \"mi gran      frase\".",
+				"Información sobre: ayuda.formatearTexto(string, \" \", \"	\", \"\\n\")\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Eliminará los huecos extra, las tabulaciones y los saltos de línea\n"+
+				"Si usas palabras clave solo se modificará la frase quitando las palabras clave que hayas elegido\n"+
+				"\n"+
+				"▼ Argumentos\n"+
+				"Admite 1 a 4 argumentos.\n"+
+				"Solo admite Strings.\n"+
+				"Palabras clave: \" \"(espacio), \"	\"(tabulación), \"\\n\"(salto de línea)\n"+
+				"Las palabras clave sirven para indicar que solo se formatee la frase con la palabra clave indicada\n"+
+				"1 Argumento		: Transforma a una frase de una sola línea.\n"+
+				"2 a 4 Argumentos	: Puedes especificar que quiere que haga la función mediante las palabras clave.\n"+
+				"\n"+
+				"▼ Ejemplos:\n"+
+				"Ejemplo	: Resultado\n"+
+				"ayuda.formatearTexto(\"mi      frase\")	: \"mi frase\".\n"+
+				"ayuda.formatearTexto(\"mi\nfrase\")	: \"mi frase\".\n"+
+				"ayuda.formatearTexto(\"mi\ngran      frase\", \"\\n\")	: \"mi gran      frase\".\n"+
 				"ayuda.formatearTexto(\"mi\ngran      frase\", \" \")	: \"mi\ngran frase\"."
 			);
 		
@@ -1312,12 +1312,65 @@ class Ayuda{
 			}
 		}
 	}
+	
+	reemplazar(frase, texto1, texto2){
+		if( arguments[0] == this.get_parametroInfo() ){
+			console.clear();
+			this.c(
+				"Información sobre: ayuda.reemplazar(\"frase\", \"texto a reemplazar\", \"texto reemplazado\")\n"+
+				"\n"+
+				"▼ Información:\n"+
+				"Dado una frase, reemplaza el primer texto por el segundo texto.\n"+
+				"Orden: \"Frase\" \"texto a reemplazar\" \"texto reemplazado\"\n"+
+				"\n"+
+				"▼ Argumentos\n"+
+				"Son necesarios 3 argumentos.\n"+
+				"Solo admite Strings.\n"+
+				"El primer argumento es la frase que será modificada\n"+
+				"\n"+
+				"▼ Ejemplos:\n"+
+				"ayuda.reemplazar(\"Los textos son diferentes a los teXtos que se encontraron en las pirámides horcas.\", \"textos\", \"libros\")\n"+
+				"Los libros son diferentes a los teXtos que se encontraron en las pirámides horcas.\n"+
+				"\n"+
+				"NOTA: Ten encuenta que solo reemplazará los textos iguales."
+			);
+		} else if( this.variables("string", frase, texto1, texto2) ){
+			var fraseA = frase.split(texto1);	// Frase partida a array sesgún encuentra la palabra del argumento texto1
+			var fraseN = fraseA[0];			// Almacena la nueva frase
+			for( var i=1 ; i<fraseA.length ; i++ ){
+				fraseN += texto2 + fraseA[i];
+			}
+			
+			this.set_resultado(fraseN);
+			
+			return fraseN;
+			
+		} else {
+			this.error("Los argumentos deben de ser de tipo string"
+				+"\n("+ ayuda.variables(frase)	+") "+ frase
+				+"\n("+ ayuda.variables(texto1)	+") "+ texto1
+				+"\n("+ ayuda.variables(texto2)	+") "+ texto2
+			);
+		}
+	}
 }
 
 // Llamada a la clase Ayuda
 ayuda = new Ayuda();
 
 /** Datos de Versiones
+
+►	Versión: 5.3
+	• Metodos creados:
+		· reemplazar()
+			◄ String.
+			
+			Reemplaza el trozo de texto de una frase a otro texto.
+			
+	• Metodos modificados:
+		Se han modificado todos los metodos.
+			El texto que se muestra cuando se llama a la ayuda de un metodo se ve mejor.
+				Esto es debido a que es mejor usar \n que , al cambiar de línea.
 
 ►	Versión: 5.2.2
 	• Metodos corregidos:
